@@ -14,8 +14,12 @@ x_axis = (right_key - left_key);
 y_axis = (down_key - up_key);
 
 //Check for Dash key 
-if (dash_key and spd != 0) {
+if (dash_key) {
     state = scr_dash_state;
     alarm[0] = room_speed/4;    
 }
 
+if (attack_key) {
+    image_index = 0;
+    state = scr_attack_state;
+}
