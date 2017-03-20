@@ -1,6 +1,3 @@
 /// scr_enemy_patrol_state()
 
-scr_check_for_player();
-
-phy_position_x += sign(target_x - x) * spd;
-phy_position_y += sign(target_y - y) * spd;
+scr_move_to_target();

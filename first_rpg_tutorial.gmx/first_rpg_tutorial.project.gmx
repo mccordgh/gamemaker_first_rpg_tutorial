@@ -7,6 +7,8 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\spr_stairs_up</sprite>
+    <sprite>sprites\spr_stairs_down</sprite>
     <sprite>sprites\spr_wall</sprite>
     <sprites name="Player">
       <sprite>sprites\spr_player_left</sprite>
@@ -22,6 +24,7 @@
     <sprite>sprites\spr_enemy_slime</sprite>
     <sprite>sprites\spr_damage</sprite>
     <sprite>sprites\spr_exp_point</sprite>
+    <sprite>sprites\spr_health</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_grass</background>
@@ -36,11 +39,14 @@
       <scripts name="Enemy Helper Scripts">
         <script>scripts\scr_enemy_choose_next_state.gml</script>
         <script>scripts\scr_check_for_player.gml</script>
+        <script>scripts\scr_move_to_target.gml</script>
       </scripts>
     </scripts>
     <scripts name="Helper Scripts">
       <script>scripts\scr_get_keyboard_input.gml</script>
       <script>scripts\scr_get_dir_facing.gml</script>
+      <script>scripts\scr_move_rooms.gml</script>
+      <script>scripts\scr_chance.gml</script>
     </scripts>
     <scripts name="Player States">
       <script>scripts\scr_move_state.gml</script>
@@ -58,9 +64,13 @@
     <object>objects\obj_damage</object>
     <object>objects\obj_player_stats</object>
     <object>objects\obj_exp_point</object>
+    <object>objects\obj_health</object>
+    <object>objects\obj_stairs_up</object>
+    <object>objects\obj_stairs_down</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_one</room>
+    <room>rooms\rm_two</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

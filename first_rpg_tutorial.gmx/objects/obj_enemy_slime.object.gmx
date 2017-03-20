@@ -31,7 +31,7 @@
 event_inherited();
 
 image_speed = .1;
-spd = .5;
+spd = 1;
 state = scr_enemy_idle_state;
 alarm[0] = room_speed*irandom_range(2, 5);
 sight = 64;
@@ -59,9 +59,15 @@ target_y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Create Experience orb on death
+            <string>/// Create loot and exp drops on death
 
-instance_create(x, y, obj_exp_point);
+// Drop xp bubble
+instance_create(x + random_range(-16, 16), y + random_range(-16, 16), obj_exp_point);
+
+// Chance to drop health bubble
+if (scr_chance(.25) and obj_player_stats.hp &lt; obj_player_stats.max_hp) {
+    instance_create(x + random_range(-16, 16), y + random_range(-16, 16), obj_health);
+}
 </string>
           </argument>
         </arguments>

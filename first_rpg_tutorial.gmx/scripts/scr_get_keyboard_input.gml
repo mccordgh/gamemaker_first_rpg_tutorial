@@ -14,9 +14,11 @@ x_axis = (right_key - left_key);
 y_axis = (down_key - up_key);
 
 // check for Dash key press
-if (dash_key) {
+if (dash_key and obj_player_stats.stamina >= DASH_COST) {
+    obj_player_stats.stamina -= DASH_COST;
     state = scr_dash_state;
-    alarm[0] = room_speed/4;    
+    alarm[0] = room_speed/5;
+    obj_player_stats.alarm[0] = room_speed * 2;  
 }
 
 // Check for attack key press
