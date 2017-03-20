@@ -10,7 +10,7 @@ if (point_distance(x, y, target_x, target_y) > spd) {
     var v_speed = lengthdir_y(spd, dir);
     
     // Face enemy toward target
-    image_xscale = sign(h_speed);
+    if (h_speed != 0) image_xscale = sign(h_speed);
     
     // Move towards target
     phy_position_x += h_speed;

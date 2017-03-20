@@ -67,6 +67,7 @@
     <object>objects\obj_health</object>
     <object>objects\obj_stairs_up</object>
     <object>objects\obj_stairs_down</object>
+    <object>objects\obj_item_drop</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_one</room>

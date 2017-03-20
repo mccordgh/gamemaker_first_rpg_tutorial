@@ -62,11 +62,11 @@ target_y = 0;
             <string>/// Create loot and exp drops on death
 
 // Drop xp bubble
-instance_create(x + random_range(-16, 16), y + random_range(-16, 16), obj_exp_point);
+instance_create(x + random_range(-32, 32), y + random_range(-32, 32), obj_exp_point);
 
 // Chance to drop health bubble
 if (scr_chance(.25) and obj_player_stats.hp &lt; obj_player_stats.max_hp) {
-    instance_create(x + random_range(-16, 16), y + random_range(-16, 16), obj_health);
+    instance_create(x + random_range(-32, 32), y + random_range(-32, 32), obj_health);
 }
 </string>
           </argument>
