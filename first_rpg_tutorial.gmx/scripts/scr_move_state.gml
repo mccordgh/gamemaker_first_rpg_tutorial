@@ -9,6 +9,7 @@ if (x_axis == 0 and y_axis == 0) {
     len = 0;
 } else {
     len = spd;
+    scr_get_dir_facing();
 }
 
 // Get h and v speeds
@@ -23,14 +24,23 @@ phy_position_y += vspd;
 image_speed = .2;
 if (len == 0) image_index = 0;
 
-if (vspd > 0) {
-    sprite_index = spr_player_down;
-} else if (vspd < 0) {
-    sprite_index = spr_player_up;
+// Get direction facing and set sprite accordingly
+switch (dir_facing) {
+    case RIGHT:
+        sprite_index = spr_player_right;
+        break;
+        
+    case UP:
+        sprite_index = spr_player_up;
+        break;
+        
+    case LEFT:
+        sprite_index = spr_player_left;
+        break;
+        
+    case DOWN:
+        sprite_index = spr_player_down;
+        break;
 }
+    
 
-if (hspd > 0) {
-    sprite_index = spr_player_right;
-} else if (hspd < 0) {
-    sprite_index = spr_player_left;
-}
