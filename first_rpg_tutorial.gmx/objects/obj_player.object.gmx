@@ -34,7 +34,7 @@ event_inherited();
 image_speed = 0;
 
 // speed settings horizontal and vertical
-hp = 30;
+hp = 3;
 hspd = 0;
 vspd = 0;
 spd = 2;
@@ -125,8 +125,10 @@ script_execute(state);
             <kind>1</kind>
             <string>/// Change back to move state
 
-if (state == scr_attack_state) state = scr_move_state;
-attacked = false;
+if (state == scr_attack_state) {
+    state = scr_move_state;
+    attacking = false;
+}
 
 </string>
           </argument>

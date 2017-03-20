@@ -1,12 +1,12 @@
-///scr_get_keyboard_input
+///scr_get_keyboard_input()
 
 //set keyboard key values
 right_key = keyboard_check(ord('D'));
 left_key = keyboard_check(ord('A'));
 up_key = keyboard_check(ord('W'));
 down_key = keyboard_check(ord('S'));
-dash_key = mouse_check_button_pressed(mb_right);
-attack_key = mouse_check_button_pressed(mb_left);
+dash_key = keyboard_check(ord('E'));
+attack_key = keyboard_check(ord('R'));
 
 // Get the axis
 // This returns 1 if either key pressed, and 0 if both or no keys pressed

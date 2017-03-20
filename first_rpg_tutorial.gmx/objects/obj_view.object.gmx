@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Move 40% towards the player
+            <string>///Move 10% towards the player
 
 if (instance_exists(obj_player)) {
     x += (obj_player.x - x) * .1;

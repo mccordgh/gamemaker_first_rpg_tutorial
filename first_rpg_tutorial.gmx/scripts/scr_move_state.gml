@@ -1,4 +1,4 @@
-///scr_move_state
+///scr_move_state()
 scr_get_keyboard_input();
 
 // Get direction

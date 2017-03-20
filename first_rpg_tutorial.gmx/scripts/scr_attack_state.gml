@@ -1,4 +1,4 @@
-///scr_attack_state
+///scr_attack_state()
 image_speed = .5;
 
 switch (sprite_index) {
@@ -46,6 +46,6 @@ if (image_index >= 3 and !attacking) {
     
     var damage = instance_create(xx, yy, obj_damage);
     damage.creator = id;
-    attacked = true;
+    attacking = true;
 }
 

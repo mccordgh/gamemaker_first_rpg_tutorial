@@ -1,4 +1,4 @@
-///scr_dash_state
+///scr_dash_state()
 len = spd * 4;
 
 // Get h and v speeds
