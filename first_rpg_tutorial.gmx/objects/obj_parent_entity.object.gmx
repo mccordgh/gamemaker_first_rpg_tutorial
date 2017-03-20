@@ -28,7 +28,8 @@
             <string>/// Initialization
 
 phy_fixed_rotation = true;
-hp = 6;
+hp = 3;
+max_hp = hp;
 </string>
           </argument>
         </arguments>
@@ -51,7 +52,7 @@ hp = 6;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Set depth based on Y value
+            <string>/// Set depth and check if HP = 0
 
 depth = -y;
 

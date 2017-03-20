@@ -1,4 +1,6 @@
 ///scr_dash_state()
+if (len = 0) dir = dir_facing * 90;
+
 len = spd * 4;
 
 // Get h and v speeds

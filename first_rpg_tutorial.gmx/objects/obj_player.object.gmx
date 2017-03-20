@@ -34,7 +34,6 @@ event_inherited();
 image_speed = 0;
 
 // speed settings horizontal and vertical
-hp = 3;
 hspd = 0;
 vspd = 0;
 spd = 2;
@@ -97,10 +96,60 @@ state = scr_move_state;
             <kind>1</kind>
             <string>/// Move the player
 
-// Inherit step event from parent
-event_inherited();
+// Set entity depth order
+depth = -y;
 
+// Execute current state script
 script_execute(state);
+
+// Check for death
+if (obj_player_stats.hp &lt;= 0) {
+    instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_exp_point">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Collect Exp and Level Up
+
+// Destroy xp bubble
+with (other) instance_destroy();
+
+// Add to player stats exp
+with (obj_player_stats) {
+    // add to experience
+    expr += 1;
+    
+    // Check for level up
+    if (expr &gt;= max_expr) {
+        level += 1;
+        expr -= max_expr;
+        max_expr = floor(max_expr * 1.5);
+        hp += 2;
+        max_hp += 2;
+        stamina += 2;
+        max_stamina += 2;
+        attack += 1;
+    }
+}
 </string>
           </argument>
         </arguments>

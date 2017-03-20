@@ -42,6 +42,31 @@ target_y = 0;
         </arguments>
       </action>
     </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Create Experience orb on death
+
+instance_create(x, y, obj_exp_point);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
@@ -110,6 +135,7 @@ target_y = 0;
 // Inherit step event from parent
 event_inherited();
 
+// Execute current state script
 script_execute(state);
 </string>
           </argument>
@@ -144,6 +170,36 @@ if (state != scr_enemy_stall_state) {
     damage.knock_back = 5;
     state = scr_enemy_stall_state;
     alarm[1] = room_speed;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Draw Enemy and other necessary stats
+
+draw_self();
+
+if (hp &lt; max_hp and hp &gt; 0) {
+    var percent = (hp / max_hp) * 100;
+    draw_healthbar(x - 8, y - 13, x + 10, y - 10, percent, c_black, c_red, c_green, 0, true, false);
 }
 </string>
           </argument>
