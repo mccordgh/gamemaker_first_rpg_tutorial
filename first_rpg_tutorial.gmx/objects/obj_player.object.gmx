@@ -297,7 +297,6 @@ if (state == scr_attack_state) {
             <kind>1</kind>
             <string>// set stats that need to persist
 
-obj_player.persistent = true;
 phy_fixed_rotation = true;
 </string>
           </argument>
