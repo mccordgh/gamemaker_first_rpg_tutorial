@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -27,9 +27,39 @@
             <kind>1</kind>
             <string>/// Initialization
 
-phy_fixed_rotation = true;
-hp = 0;
-max_hp = 0;
+title = "Game Paused";
+
+// set menu options
+option[0] = "Return to Game";
+option[1] = "Save";
+option[2] = "Load";
+option[3] = "Quit";
+
+// set menu index
+menu_index = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Generic Alarm
 </string>
           </argument>
         </arguments>
@@ -52,19 +82,32 @@ max_hp = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Set depth and check if HP = 0
+            <string>/// Control the Menu
 
-depth = -y;
-
-if (hp &lt;= 0) {
-    instance_destroy();
+if (alarm[0] &lt;= 0) {
+    if (obj_input.down_key) {
+        if (menu_index &lt; array_length_1d(option) - 1) {
+            menu_index++
+        } else {
+            menu_index = 0;
+        }
+        alarm[0] = room_speed / 6;
+    }
+    if (obj_input.up_key) {
+        if (menu_index &gt; 0) {
+            menu_index--;
+        } else {
+            menu_index = array_length_1d(option) - 1;
+        }
+        alarm[0] = room_speed / 6;
+    }
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_parent_entity">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -81,30 +124,31 @@ if (hp &lt;= 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Collide
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="obj_wall">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Collide
+            <string>/// Draw Menu Text
+
+// Get screen center
+var xx = display_get_gui_width() / 2;
+var yy = display_get_gui_height() / 2;
+
+// center the horizontal alignment
+draw_set_halign(fa_center);
+
+// draw menu title
+draw_text(xx, yy - 64, title);
+
+// draw each menu option
+for (var i = 0; i &lt; array_length_1d(option); i++) {
+    // draw current selected menu item white, and the rest gray
+    if (i == menu_index) {
+        draw_set_color(c_white);
+    } else {
+        draw_set_color(c_gray);
+    }
+    draw_text(xx, yy + (i * 32), option[i]);
+}
+
+draw_set_color(c_white);
+draw_set_halign(fa_left);
 </string>
           </argument>
         </arguments>

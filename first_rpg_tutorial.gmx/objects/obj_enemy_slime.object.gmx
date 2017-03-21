@@ -30,6 +30,10 @@
 // inherit from parent Create Event
 event_inherited();
 
+hp = 3;
+max_hp = hp;
+damage = 1;
+exp_worth = 1;
 image_speed = .1;
 spd = 1;
 state = scr_enemy_idle_state;
@@ -61,12 +65,16 @@ target_y = 0;
             <kind>1</kind>
             <string>/// Create loot and exp drops on death
 
-// Drop xp bubble
-instance_create(x + random_range(-32, 32), y + random_range(-32, 32), obj_exp_point);
+if instance_exists(obj_player) {
 
-// Chance to drop health bubble
-if (scr_chance(.25) and obj_player_stats.hp &lt; obj_player_stats.max_hp) {
-    instance_create(x + random_range(-32, 32), y + random_range(-32, 32), obj_health);
+    // Drop xp bubble
+    var new_exp_bubble = instance_create(x + random_range(-32, 32), y + random_range(-32, 32), obj_exp_point);
+    new_exp_bubble.exp_worth = exp_worth;
+    
+    // Chance to drop health bubble
+    if (scr_chance(.33) and obj_player_stats.hp &lt; obj_player_stats.max_hp) {
+        instance_create(x + random_range(-32, 32), y + random_range(-32, 32), obj_health);
+    }
 }
 </string>
           </argument>
@@ -226,8 +234,8 @@ if (hp &lt; max_hp and hp &gt; 0) {
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
     <point>2,6</point>
-    <point>10,2</point>
-    <point>22,2</point>
+    <point>10,6</point>
+    <point>22,6</point>
     <point>24,10</point>
     <point>16,14</point>
     <point>6,14</point>

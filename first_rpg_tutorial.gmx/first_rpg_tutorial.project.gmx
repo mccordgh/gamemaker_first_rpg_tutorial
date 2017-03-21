@@ -22,9 +22,12 @@
       <sprite>sprites\spr_player_attack_left</sprite>
     </sprites>
     <sprite>sprites\spr_enemy_slime</sprite>
+    <sprite>sprites\spr_enemy_slime_blue</sprite>
     <sprite>sprites\spr_damage</sprite>
     <sprite>sprites\spr_exp_point</sprite>
     <sprite>sprites\spr_health</sprite>
+    <sprite>sprites\spr_sign</sprite>
+    <sprite>sprites\spr_dialogue_box</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_grass</background>
@@ -47,6 +50,8 @@
       <script>scripts\scr_get_dir_facing.gml</script>
       <script>scripts\scr_move_rooms.gml</script>
       <script>scripts\scr_chance.gml</script>
+      <script>scripts\scr_advance_dialogue.gml</script>
+      <script>scripts\scr_string_copy_words.gml</script>
     </scripts>
     <scripts name="Player States">
       <script>scripts\scr_move_state.gml</script>
@@ -55,23 +60,44 @@
     </scripts>
   </scripts>
   <objects name="objects">
-    <object>objects\obj_player</object>
-    <object>objects\obj_wall</object>
-    <object>objects\obj_view</object>
-    <object>objects\obj_dash_effect</object>
-    <object>objects\obj_enemy_slime</object>
-    <object>objects\obj_parent_entity</object>
-    <object>objects\obj_damage</object>
-    <object>objects\obj_player_stats</object>
-    <object>objects\obj_exp_point</object>
-    <object>objects\obj_health</object>
-    <object>objects\obj_stairs_up</object>
-    <object>objects\obj_stairs_down</object>
-    <object>objects\obj_item_drop</object>
+    <objects name="Player">
+      <object>objects\obj_player</object>
+      <object>objects\obj_player_stats</object>
+      <object>objects\obj_dash_effect</object>
+      <object>objects\obj_input</object>
+    </objects>
+    <objects name="Enemy">
+      <object>objects\obj_enemy_slime</object>
+      <object>objects\obj_enemy_slime_blue</object>
+    </objects>
+    <objects name="Items">
+      <object>objects\obj_health</object>
+      <object>objects\obj_exp_point</object>
+      <object>objects\obj_item_drop</object>
+    </objects>
+    <objects name="Rooms">
+      <objects name="Interactives">
+        <object>objects\obj_sign</object>
+        <object>objects\obj_dialogue</object>
+        <object>objects\obj_stairs_down</object>
+        <object>objects\obj_speaker</object>
+        <object>objects\obj_stairs_up</object>
+      </objects>
+      <object>objects\obj_view</object>
+      <object>objects\obj_wall</object>
+    </objects>
+    <objects name="All entities">
+      <object>objects\obj_damage</object>
+      <object>objects\obj_parent_entity</object>
+    </objects>
+    <objects name="Menus">
+      <object>objects\obj_pause_menu</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_one</room>
     <room>rooms\rm_two</room>
+    <room>rooms\rm_pause</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

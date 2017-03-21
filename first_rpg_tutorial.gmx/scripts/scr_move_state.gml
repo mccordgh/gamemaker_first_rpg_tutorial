@@ -1,11 +1,57 @@
 ///scr_move_state()
-scr_get_keyboard_input();
+
+// check for Dash key press
+if (obj_input.dash_key) {
+    // Check for nearby sign
+    var x_dir = lengthdir_x(8, dir_facing * 90);
+    var y_dir = lengthdir_y(8, dir_facing * 90);
+    var speaker = instance_place(x + x_dir, y + y_dir, obj_speaker);
+    // If nearby sign exists, talk to it
+    if (speaker != noone) {
+        with (speaker) {
+            // set font color
+            draw_set_colour(c_black);
+            
+            // check if a dialogue instance exists
+            if (!instance_exists(dialogue)) {
+                 // if not, create new instance and set the text array
+                dialogue = instance_create(x + x_offset, y + y_offset, obj_dialogue);
+                dialogue.speaking = true;
+                dialogue.text = text;
+            } else if (instance_exists(dialogue) and !dialogue.speaking){ 
+                dialogue.speaking = true;
+                // else, go to the next page
+                dialogue.text_page++;
+                dialogue.text_count = 0;
+    
+                // check if you've seen the last page, and if so set text_page to 0
+                if (dialogue.text_page > array_length_1d(dialogue.text) - 1) {
+                    with (dialogue) {
+                        instance_destroy();
+                    }
+                }
+            }
+        }        
+    // else DASH
+    } else if (obj_player_stats.stamina >= DASH_COST) {
+        obj_player_stats.stamina -= DASH_COST;
+        state = scr_dash_state;
+        alarm[0] = room_speed/5;
+        obj_player_stats.alarm[0] = room_speed * 2;  
+    }
+}
+
+// Check for attack key press
+if (obj_input.attack_key) {
+    image_index = 0;
+    state = scr_attack_state;
+}
 
 // Get direction
-dir = point_direction(0, 0, x_axis, y_axis);
+dir = point_direction(0, 0, obj_input.x_axis, obj_input.y_axis);
 
 // Get length of move
-if (x_axis == 0 and y_axis == 0) {
+if (obj_input.x_axis == 0 and obj_input.y_axis == 0) {
     len = 0;
 } else {
     len = spd;
@@ -42,5 +88,4 @@ switch (dir_facing) {
         sprite_index = spr_player_down;
         break;
 }
-    
 

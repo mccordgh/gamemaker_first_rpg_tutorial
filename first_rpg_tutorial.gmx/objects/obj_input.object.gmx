@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,13 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Initialize
+            <string>/// Initialization
 
-image_speed = .20;
-spd = .1;
-sight = 64;
-target_x = 0;
-target_y = 0;
+scr_get_keyboard_input();
+previous_room = room;
+
 </string>
           </argument>
         </arguments>
@@ -54,11 +52,23 @@ target_y = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Move to target (player)
+            <string>/// getting input
 
-if instance_exists(obj_player) {
-    scr_move_to_target();
-    spd += .1;
+scr_get_keyboard_input();
+
+//Pause the Game
+if (pause_key) {
+    // Check if already in the pause room
+    if (room != rm_pause) {
+        // if player exists, turn persistant off so it doesnt show in pause room
+        if (instance_exists(obj_player)) obj_player.persistent = false;
+        // Store previous room and go to pause room
+        previous_room = room;
+        room_goto(rm_pause);
+    } else {
+        // exit pause menu and go to previous room
+        room_goto(previous_room);
+    }
 }
 </string>
           </argument>

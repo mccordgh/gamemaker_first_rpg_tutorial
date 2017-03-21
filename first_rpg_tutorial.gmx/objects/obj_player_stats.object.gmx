@@ -94,6 +94,31 @@ if (stamina &lt; max_stamina and alarm[0] == -1) {
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// create persistant instance of input object
+
+instance_create(0, 0, obj_input);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
@@ -118,6 +143,7 @@ draw_text(100, 32, "Health: " + string(hp) + " / " +  string(max_hp));
 draw_text(100, 48, "Stamina: " + string(stamina) + " / " +  string(max_stamina));
 draw_text(100, 64, "Level: " + string(level));
 draw_text(100, 80, "Exp: " + string(expr) + " / " + string(max_expr));
+if (room != rm_pause) draw_text(100, 112, "Player X, Y: " + string(obj_player.x) + ", " + string(obj_player.y));
 </string>
           </argument>
         </arguments>
