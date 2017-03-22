@@ -47,6 +47,18 @@ if (obj_input.attack_key) {
     state = scr_attack_state;
 }
 
+// Check for spell key press
+if (obj_input.spell_key) {
+    // create projectile
+    var projectile = instance_create(x, y, obj_projectile);
+    // calculate and apply force to projectile
+    var x_force = lengthdir_x(20, dir_facing * 90);
+    var y_force = lengthdir_y(20, dir_facing * 90);
+    projectile.creator = id;
+    with (projectile) physics_apply_impulse(x, y, x_force, y_force);
+}
+
+
 // Get direction
 dir = point_direction(0, 0, obj_input.x_axis, obj_input.y_axis);
 

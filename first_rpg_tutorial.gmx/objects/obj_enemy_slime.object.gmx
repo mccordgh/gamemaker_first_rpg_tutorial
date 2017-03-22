@@ -32,10 +32,10 @@ event_inherited();
 
 hp = 3;
 max_hp = hp;
-damage = 1;
+damage = 2;
 exp_worth = 1;
 image_speed = .1;
-spd = 1;
+spd = 1.5;
 state = scr_enemy_idle_state;
 alarm[0] = room_speed*irandom_range(2, 5);
 sight = 64;

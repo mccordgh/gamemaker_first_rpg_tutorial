@@ -85,7 +85,11 @@ menu_index = 0;
             <string>/// Control the Menu
 
 if (alarm[0] &lt;= 0) {
-    if (obj_input.down_key) {
+    // check if gamepad stick is tilted up or down. will be -1 for up and 1 for down.
+    vertical_axis = gamepad_axis_value(obj_input.gamepad, gp_axislv);
+
+    // if stick down or down_key on keyboard pressed then move down the menu
+    if (obj_input.down_key or vertical_axis == 1) {
         if (menu_index &lt; array_length_1d(option) - 1) {
             menu_index++
         } else {
@@ -93,13 +97,46 @@ if (alarm[0] &lt;= 0) {
         }
         alarm[0] = room_speed / 6;
     }
-    if (obj_input.up_key) {
+
+    // if stick up or up_key on keyboard pressed then move down the menu
+    if (obj_input.up_key or vertical_axis == -1) {
         if (menu_index &gt; 0) {
             menu_index--;
         } else {
             menu_index = array_length_1d(option) - 1;
         }
         alarm[0] = room_speed / 6;
+    }
+
+    if (obj_input.dash_key) {
+        switch (menu_index) {
+            // Return to Game
+            case 0:
+                obj_player_stats.room_start_action = RETURN;
+                room_goto(obj_player_stats.previous_room);
+                break;
+                
+            // Save Game
+            case 1:
+                scr_save_game();
+                break;
+            
+            // Load Game
+            case 2:
+                obj_player_stats.room_start_action = LOAD;
+                room_goto(obj_player_stats.previous_room);
+                //scr_load_game();
+                break;
+            
+            // Quit Game
+            case 3:
+                game_end();
+                break;
+            default:
+                show_message("Switch hit default :/");
+                break;
+        }
+        obj_input.dash_key = false;
     }
 }
 </string>

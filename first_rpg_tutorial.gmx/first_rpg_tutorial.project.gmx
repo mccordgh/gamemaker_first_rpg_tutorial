@@ -23,6 +23,7 @@
     </sprites>
     <sprite>sprites\spr_enemy_slime</sprite>
     <sprite>sprites\spr_enemy_slime_blue</sprite>
+    <sprite>sprites\spr_bullet</sprite>
     <sprite>sprites\spr_damage</sprite>
     <sprite>sprites\spr_exp_point</sprite>
     <sprite>sprites\spr_health</sprite>
@@ -46,12 +47,16 @@
       </scripts>
     </scripts>
     <scripts name="Helper Scripts">
-      <script>scripts\scr_get_keyboard_input.gml</script>
+      <script>scripts\scr_get_input.gml</script>
       <script>scripts\scr_get_dir_facing.gml</script>
       <script>scripts\scr_move_rooms.gml</script>
       <script>scripts\scr_chance.gml</script>
       <script>scripts\scr_advance_dialogue.gml</script>
       <script>scripts\scr_string_copy_words.gml</script>
+      <scripts name="I/O">
+        <script>scripts\scr_load_game.gml</script>
+        <script>scripts\scr_save_game.gml</script>
+      </scripts>
     </scripts>
     <scripts name="Player States">
       <script>scripts\scr_move_state.gml</script>
@@ -64,7 +69,6 @@
       <object>objects\obj_player</object>
       <object>objects\obj_player_stats</object>
       <object>objects\obj_dash_effect</object>
-      <object>objects\obj_input</object>
     </objects>
     <objects name="Enemy">
       <object>objects\obj_enemy_slime</object>
@@ -86,9 +90,11 @@
       <object>objects\obj_view</object>
       <object>objects\obj_wall</object>
     </objects>
-    <objects name="All entities">
+    <objects name="Helpers">
       <object>objects\obj_damage</object>
       <object>objects\obj_parent_entity</object>
+      <object>objects\obj_input</object>
+      <object>objects\obj_projectile</object>
     </objects>
     <objects name="Menus">
       <object>objects\obj_pause_menu</object>
