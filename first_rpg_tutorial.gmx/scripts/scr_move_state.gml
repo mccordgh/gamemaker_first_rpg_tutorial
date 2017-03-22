@@ -1,4 +1,5 @@
 ///scr_move_state()
+movement = MOVE;
 
 // check for Dash key press
 if (obj_input.dash_key) {
@@ -52,8 +53,8 @@ if (obj_input.spell_key) {
     // create projectile
     var projectile = instance_create(x, y, obj_projectile);
     // calculate and apply force to projectile
-    var x_force = lengthdir_x(20, dir_facing * 90);
-    var y_force = lengthdir_y(20, dir_facing * 90);
+    var x_force = lengthdir_x(10, dir_facing * 90);
+    var y_force = lengthdir_y(10, dir_facing * 90);
     projectile.creator = id;
     with (projectile) physics_apply_impulse(x, y, x_force, y_force);
 }
@@ -81,23 +82,4 @@ phy_position_y += vspd;
 // Control the sprite
 image_speed = .2;
 if (len == 0) image_index = 0;
-
-// Get direction facing and set sprite accordingly
-switch (dir_facing) {
-    case RIGHT:
-        sprite_index = spr_player_right;
-        break;
-        
-    case UP:
-        sprite_index = spr_player_up;
-        break;
-        
-    case LEFT:
-        sprite_index = spr_player_left;
-        break;
-        
-    case DOWN:
-        sprite_index = spr_player_down;
-        break;
-}
 

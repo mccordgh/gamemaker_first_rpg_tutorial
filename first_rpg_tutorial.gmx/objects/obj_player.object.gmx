@@ -41,9 +41,23 @@ len = 0;
 dir = 0;
 attacking = false;
 dir_facing = DOWN;
+movement = MOVE;
 
 // set state on init
 state = scr_move_state;
+
+// set move sprites
+sprite[RIGHT, MOVE] = spr_player_right;
+sprite[UP, MOVE] = spr_player_up;
+sprite[DOWN, MOVE] = spr_player_down;
+sprite[LEFT, MOVE] = spr_player_left;
+
+// set attack sprites
+sprite[RIGHT, ATTACK] = spr_player_attack_right;
+sprite[UP, ATTACK] = spr_player_attack_up;
+sprite[DOWN, ATTACK] = spr_player_attack_down;
+sprite[LEFT, ATTACK] = spr_player_attack_left;
+
 
 
 </string>
@@ -100,6 +114,9 @@ depth = -y;
 
 // Execute current state script
 script_execute(state);
+
+// set sprite index equal to corresponding sprite based on direction and movement type
+sprite_index = sprite[dir_facing, movement];
 
 // Check for death
 if (obj_player_stats.hp &lt;= 0) {
