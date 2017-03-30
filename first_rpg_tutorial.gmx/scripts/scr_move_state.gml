@@ -68,7 +68,7 @@ if (obj_input.x_axis == 0 and obj_input.y_axis == 0) {
     len = 0;
 } else {
     len = spd;
-    scr_get_dir_facing();
+    scr_get_dir_facing(dir);
 }
 
 // Get h and v speeds
