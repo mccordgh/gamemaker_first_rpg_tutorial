@@ -59,6 +59,12 @@ if (obj_input.spell_key) {
     with (projectile) physics_apply_impulse(x, y, x_force, y_force);
 }
 
+if (obj_input.weapon_swap_key) {
+    var nearest_weapon = instance_nearest(x, y, obj_weapon_drop);
+    if (place_meeting(x, y + 4, nearest_weapon)) {
+        scr_swap_weapons(nearest_weapon);
+    }
+}
 
 // Get direction
 dir = point_direction(0, 0, obj_input.x_axis, obj_input.y_axis);

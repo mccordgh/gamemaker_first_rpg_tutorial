@@ -2,7 +2,14 @@
 image_speed = .6;
 movement = ATTACK;
 
-if (image_index >= 3 and !attacking) {
+if (scr_animation_hit_frame(2)) {
+    var attack_animation = instance_create(x, y, obj_weapon_animation);
+    attack_animation.dir = dir_facing * 90;
+    attack_animation.image_angle = dir_facing * 90 + 45;
+    attack_animation.sprite_index = weapon_sprite;
+}
+
+if (scr_animation_hit_frame(3)) {
     switch (dir_facing) {
         case DOWN:
             xx = x;
@@ -32,6 +39,5 @@ if (image_index >= 3 and !attacking) {
     var damage = instance_create(xx, yy, obj_damage);
     damage.creator = id;
     damage.damage = obj_player_stats.attack;
-    attacking = true;
 }
 

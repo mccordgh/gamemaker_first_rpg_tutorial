@@ -89,7 +89,7 @@ if (alarm[0] &lt;= 0) {
     vertical_axis = gamepad_axis_value(obj_input.gamepad, gp_axislv);
 
     // if stick down or down_key on keyboard pressed then move down the menu
-    if (obj_input.down_key or vertical_axis == 1) {
+    if (obj_input.down_key or vertical_axis &gt; .5) {
         if (menu_index &lt; array_length_1d(option) - 1) {
             menu_index++
         } else {
@@ -99,7 +99,7 @@ if (alarm[0] &lt;= 0) {
     }
 
     // if stick up or up_key on keyboard pressed then move down the menu
-    if (obj_input.up_key or vertical_axis == -1) {
+    if (obj_input.up_key or vertical_axis &lt; -.5) {
         if (menu_index &gt; 0) {
             menu_index--;
         } else {

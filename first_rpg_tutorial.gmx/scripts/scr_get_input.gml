@@ -9,6 +9,7 @@ dash_key = keyboard_check(ord('J'));
 attack_key = keyboard_check(ord('K'));
 pause_key = keyboard_check_pressed(vk_escape);
 spell_key = keyboard_check_pressed(ord('L'));
+weapon_swap_key = keyboard_check_pressed(ord('I'));
 
 // Get the axis
 // This returns 1 if either key pressed, and 0 if both or no keys pressed
@@ -27,4 +28,5 @@ if (gamepad >= 0) {
     attack_key = gamepad_button_check_pressed(gamepad, gp_face2);
     spell_key = gamepad_button_check_pressed(gamepad, gp_face3);
     pause_key = gamepad_button_check_pressed(gamepad, gp_start);
+    weapon_swap_key = gamepad_button_check_pressed(gamepad, gp_face4);
 }

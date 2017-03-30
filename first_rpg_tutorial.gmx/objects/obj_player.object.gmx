@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialization
+if (instance_number(obj_player) &gt; 1) instance_destroy();
 
 // inherit from parent Create Event
 event_inherited();
@@ -39,9 +40,9 @@ vspd = 0;
 spd = 2;
 len = 0;
 dir = 0;
-attacking = false;
 dir_facing = DOWN;
 movement = MOVE;
+weapon_sprite = spr_sword;
 
 // set state on init
 state = scr_move_state;
