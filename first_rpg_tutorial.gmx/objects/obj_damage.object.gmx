@@ -30,7 +30,7 @@
 damage = 1;
 knock_back = 10;
 creator = noone;
-alarm[0] = room_speed;
+alarm[0] = 1;
 </string>
           </argument>
         </arguments>
@@ -81,9 +81,10 @@ instance_destroy();
 
 // check if colliding with creator
 if (other.id != creator) {
-    // deal damage to entity collided with
+    // deal damage to entity collided with and set to hostile
     other.hp -= damage;
-
+    other.hostile = true;
+    
     // get direction of knockback
     if instance_exists(creator) and instance_exists(other) {
         var dir = point_direction(creator.x, creator.y, other.x, other.y);
@@ -124,8 +125,12 @@ if (other.id != creator) {
 
 // check if colliding with creator
 if (other.id != creator) {
-   // deal damage to player
+   
+    // deal damage to player
     obj_player_stats.hp -= damage;
+    
+    // play player takes dmg sound
+    audio_play_sound(snd_player_takes_damage, 9, false);
     
     if instance_exists(creator) and instance_exists(other) {
         var dir = point_direction(creator.x, creator.y, other.x, other.y);

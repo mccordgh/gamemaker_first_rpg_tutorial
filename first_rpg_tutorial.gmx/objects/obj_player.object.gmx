@@ -209,6 +209,7 @@ exp_worth = other.exp_worth;
 
 // Destroy xp bubble
 with (other) instance_destroy();
+audio_play_sound(snd_experience, 6, false);
 
 // add to player experience
 obj_player_stats.expr += exp_worth;
@@ -256,10 +257,12 @@ with (obj_player_stats) {
 
 // Destroy health bubble
 with (other) instance_destroy();
+audio_play_sound(snd_experience, 6, false);
 
 // Add hp to player and don't go past max
 with (obj_player_stats) {
-    hp = min(hp + 3, max_hp);
+    var quarter_percent = round(max_hp * .25);
+    hp = min(hp + quarter_percent, max_hp);
 }
 </string>
           </argument>

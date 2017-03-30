@@ -30,6 +30,7 @@
 phy_fixed_rotation = true;
 hp = 0;
 max_hp = 0;
+hostile = false;
 </string>
           </argument>
         </arguments>

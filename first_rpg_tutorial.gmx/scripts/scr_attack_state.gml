@@ -25,7 +25,10 @@ if (image_index >= 3 and !attacking) {
             break;
     }
 
+    // attack sound effect
+    audio_play_sound(snd_sword_attack, 10, false);
     
+    // create damage instance
     var damage = instance_create(xx, yy, obj_damage);
     damage.creator = id;
     damage.damage = obj_player_stats.attack;

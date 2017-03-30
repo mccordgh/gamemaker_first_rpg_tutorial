@@ -65,8 +65,10 @@ y_axis = 0;
             <kind>1</kind>
             <string>/// Create loot and exp drops on death
 
-if instance_exists(obj_player) {
+// play enemy die audio
+audio_play_sound(snd_enemy_die, 5, false);
 
+if instance_exists(obj_player) {
     // Drop xp bubble
     var new_exp_bubble = instance_create(x + random_range(-32, 32), y + random_range(-32, 32), obj_exp_point);
     new_exp_bubble.exp_worth = exp_worth;
